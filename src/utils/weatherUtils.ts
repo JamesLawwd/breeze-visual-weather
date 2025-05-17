@@ -34,35 +34,28 @@ export const cities: City[] = [
   { name: "Mumbai", country: "India" },
   { name: "Cairo", country: "Egypt" },
   { name: "Rio de Janeiro", country: "Brazil" },
+  // Added African cities
+  { name: "Lagos", country: "Nigeria" },
+  { name: "Nairobi", country: "Kenya" },
+  { name: "Accra", country: "Ghana" },
+  { name: "Johannesburg", country: "South Africa" },
+  { name: "Cape Town", country: "South Africa" },
+  { name: "Addis Ababa", country: "Ethiopia" },
+  { name: "Dar es Salaam", country: "Tanzania" },
+  { name: "Casablanca", country: "Morocco" },
+  { name: "Khartoum", country: "Sudan" },
+  { name: "Algiers", country: "Algeria" },
+  { name: "Tunis", country: "Tunisia" },
+  { name: "Dakar", country: "Senegal" },
+  { name: "Abidjan", country: "Ivory Coast" },
+  { name: "Kampala", country: "Uganda" },
+  { name: "Harare", country: "Zimbabwe" },
+  { name: "Lusaka", country: "Zambia" },
+  { name: "Kigali", country: "Rwanda" },
+  { name: "Luanda", country: "Angola" },
+  { name: "Maputo", country: "Mozambique" },
+  { name: "Windhoek", country: "Namibia" }
 ];
-
-// Mock function to simulate API call
-export const fetchWeatherData = (city: string): Promise<WeatherData> => {
-  return new Promise((resolve) => {
-    // Simulate API delay
-    setTimeout(() => {
-      const conditions: WeatherCondition[] = ['sunny', 'rainy', 'cloudy', 'snowy', 'stormy'];
-      const randomCondition = conditions[Math.floor(Math.random() * conditions.length)];
-      const temperature = Math.floor(Math.random() * 35) + 5; // Random temp between 5 and 40
-      
-      resolve({
-        city,
-        country: getCityCountry(city) || "Unknown",
-        temperature,
-        condition: randomCondition,
-        humidity: Math.floor(Math.random() * 100),
-        windSpeed: Math.floor(Math.random() * 30),
-        lastUpdated: new Date().toLocaleTimeString(),
-      });
-    }, 800);
-  });
-};
-
-// Helper function to get a country for a city
-export const getCityCountry = (cityName: string): string | undefined => {
-  const city = cities.find(city => city.name.toLowerCase() === cityName.toLowerCase());
-  return city?.country;
-};
 
 // Filter cities based on search term
 export const searchCities = (searchTerm: string): City[] => {
@@ -75,6 +68,12 @@ export const searchCities = (searchTerm: string): City[] => {
       city.country.toLowerCase().includes(lowerCaseSearch)
     )
     .slice(0, 5); // Limit to 5 results
+};
+
+// Helper function to get a country for a city
+export const getCityCountry = (cityName: string): string | undefined => {
+  const city = cities.find(city => city.name.toLowerCase() === cityName.toLowerCase());
+  return city?.country;
 };
 
 // Get background gradient based on weather condition
